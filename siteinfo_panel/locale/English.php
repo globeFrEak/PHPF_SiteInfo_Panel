@@ -21,5 +21,7 @@ $locale['siptit'] = "SiteInfo Panel";
 $locale['sipdesc'] = "SiteInfo Panel with all new information since last login.";
 $locale['sipver'] = "1.0";
 
+$locale['sip001'] = "Site Info Panel";
+
 
 ?>

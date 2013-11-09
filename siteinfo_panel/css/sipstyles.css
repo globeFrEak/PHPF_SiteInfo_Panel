@@ -1,0 +1,34 @@
+.brick {	
+	float: left;
+	cursor: default;
+        margin: 5px;
+}
+
+.brick img {	
+	padding-right: 2px;
+}
+
+a.infotip {outline:none; }
+a.infotip strong {line-height:30px;}
+a.infotip:hover {text-decoration:none;} 
+a.infotip span {
+    z-index:10;display:none; padding:14px 20px;
+    margin-top:-30px; margin-left:28px;
+    width:240px; line-height:16px;
+}
+a.infotip:hover span{
+    display:inline; position:absolute; color:#111;
+    border:1px solid #DCA; background:#fffAF0;}
+.callout {z-index:20;position:absolute;top:30px;border:0;left:-12px;}
+    
+/*CSS3 extras*/
+a.infotip span
+{
+    border-radius:4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+        
+    -moz-box-shadow: 5px 5px 8px #CCC;
+    -webkit-box-shadow: 5px 5px 8px #CCC;
+    box-shadow: 5px 5px 8px #CCC;
+}

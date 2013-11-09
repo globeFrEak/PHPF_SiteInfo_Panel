@@ -7,8 +7,17 @@ Show the newest Information about:
 ----------------------------------
 - Comments on all sections
 - Photos
-- News/Articles
-- Forum Posts/Threads
+- News
+- Articles
+- Forum Posts
 - Weblinks
 - Downloads
 - new User
+- Messages
+- Shoutbox when infused
+- Polls
+
+
+included:
+---------
+Icons from Yusuke Kamiyamane (http://p.yusukekamiyamane.com/)

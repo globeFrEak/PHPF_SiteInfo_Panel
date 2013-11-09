@@ -24,6 +24,23 @@ include INFUSIONS . "siteinfo_panel/include/locale.php";
 
 //add_to_head("<script type='text/javascript' src='" . INFUSIONS . "siteinfo_panel/js/freewall.js'></script>");
 add_to_head("<link rel='stylesheet' href='" . INFUSIONS . "siteinfo_panel/css/sipstyles.css' type='text/css' media='Screen' />");
+add_to_head("<script>
+    $( document ).ready(function() {
+        $('.infofade').fadeOut();
+        var timer;
+        $('.brick').on({
+            mouseover: function () {
+                clearTimeout(timer);
+                $('.infofade').fadeIn();
+            },
+            mouseout : function () {
+                timer = setTimeout(function () { 
+                    $('.infofade').fadeOut();
+                }, 100);
+            }
+        });
+    });
+    </script>");
 
 if ($userdata['user_lastvisit']) {
     opentable($locale['sip001']);
@@ -33,11 +50,11 @@ if ($userdata['user_lastvisit']) {
     $rows = dbrows($resultnews);
     if ($rows > 0) {
         echo "<div class='brick'>";
-        echo "<a href='#' class='infotip'>";
-            echo "<img src='" . INFUSIONS . "siteinfo_panel/images/newspaper--plus.png' alt='News'>";
-            echo $rows;
-            echo "<span>die neuesten News</span>";
-        echo "</a>";
+            echo "<a href='#'>";
+                echo "<img src='" . INFUSIONS . "siteinfo_panel/images/newspaper--plus.png' alt='News'>";
+                echo $rows;
+                echo "<span class='infofade'>die neuesten News</span>";
+            echo "</a>";
         echo "</div>";
     }
 

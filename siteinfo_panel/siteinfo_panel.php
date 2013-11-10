@@ -26,17 +26,20 @@ include INFUSIONS . "siteinfo_panel/include/locale.php";
 add_to_head("<link rel='stylesheet' href='" . INFUSIONS . "siteinfo_panel/css/sipstyles.css' type='text/css' media='Screen' />");
 add_to_head("<script>
     $( document ).ready(function() {
-        $('.infofade').fadeOut();
+        $('#infofade').hide();
         var timer;
-        $('.brick').on({
-            mouseover: function () {
-                clearTimeout(timer);
-                $('.infofade').fadeIn();
-            },
-            mouseout : function () {
-                timer = setTimeout(function () { 
-                    $('.infofade').fadeOut();
+        var text;
+        $('.brick').on({            
+            mouseenter: function () {                
+                text = $(this).find( 'span' ).text();
+                timer = setTimeout(function () {
+                    $('#infofade').text(text).slideDown();
                 }, 100);
+            },
+            mouseleave : function () {
+                timer = setTimeout(function () {                     
+                    $('#infofade').text(text).slideUp();                    
+                }, 1500);
             }
         });
     });
@@ -44,17 +47,17 @@ add_to_head("<script>
 
 if ($userdata['user_lastvisit']) {
     opentable($locale['sip001']);
-    echo "<div id='freewall'>";
+    echo "<div>";
     //$resultnews = dbquery("SELECT news_id,news_news,news_subject FROM " . DB_NEWS . " WHERE news_datestamp > " . $userdata['user_lastvisit'] . " AND news_visibility = 0 ORDER BY news_datestamp");
     $resultnews = dbquery("SELECT news_id FROM " . DB_NEWS . " WHERE news_visibility = 0 ORDER BY news_datestamp");
     $rows = dbrows($resultnews);
     if ($rows > 0) {
         echo "<div class='brick'>";
-            echo "<a href='#'>";
-                echo "<img src='" . INFUSIONS . "siteinfo_panel/images/newspaper--plus.png' alt='News'>";
-                echo $rows;
-                echo "<span class='infofade'>die neuesten News</span>";
-            echo "</a>";
+        echo "<a href='#'>";
+        echo "<img src='" . INFUSIONS . "siteinfo_panel/images/newspaper--plus.png' alt='News'>";
+        echo $rows;
+        echo "<span>die neuesten News</span>";
+        echo "</a>";
         echo "</div>";
     }
 
@@ -63,10 +66,10 @@ if ($userdata['user_lastvisit']) {
     $rows = dbrows($resultarticles);
     if ($rows > 0) {
         echo "<div class='brick'>";
-        echo "<a href='#' class='infotip'>";
-            echo "<img src='" . INFUSIONS . "siteinfo_panel/images/blog--plus.png' alt='Article'>";
-            echo $rows;
-            echo "<span>die neuesten Artikel</span>";
+        echo "<a href='#'>";
+        echo "<img src='" . INFUSIONS . "siteinfo_panel/images/blog--plus.png' alt='Article'>";
+        echo $rows;
+        echo "<span>die neuesten Artikel</span>";
         echo "</a>";
         echo "</div>";
     }
@@ -76,10 +79,10 @@ if ($userdata['user_lastvisit']) {
     $rows = dbrows($resultcomments);
     if ($rows > 0) {
         echo "<div class='brick'>";
-        echo "<a href='#' class='infotip'>";
-            echo "<img src='" . INFUSIONS . "siteinfo_panel/images/balloon--plus.png' alt='Comments'>";
-            echo $rows;
-            echo "<span>die neuesten Kommentare</span>";
+        echo "<a href='#'>";
+        echo "<img src='" . INFUSIONS . "siteinfo_panel/images/balloon--plus.png' alt='Comments'>";
+        echo $rows;
+        echo "<span>die neuesten Kommentare</span>";
         echo "</a>";
         echo "</div>";
     }
@@ -89,10 +92,10 @@ if ($userdata['user_lastvisit']) {
     $rows = dbrows($resultphotos);
     if ($rows > 0) {
         echo "<div class='brick'>";
-        echo "<a href='#' class='infotip'>";
-            echo "<img src='" . INFUSIONS . "siteinfo_panel/images/photo-album--plus.png' alt='News'>";
-            echo $rows;
-            echo "<span>die neuesten Fotos</span>";
+        echo "<a href='#'>";
+        echo "<img src='" . INFUSIONS . "siteinfo_panel/images/photo-album--plus.png' alt='News'>";
+        echo $rows;
+        echo "<span>die neuesten Fotos</span>";
         echo "</a>";
         echo "</div>";
     }
@@ -102,10 +105,10 @@ if ($userdata['user_lastvisit']) {
     $rows = dbrows($resultpolls);
     if ($rows > 0) {
         echo "<div class='brick'>";
-        echo "<a href='#' class='infotip'>";
-            echo "<img src='" . INFUSIONS . "siteinfo_panel/images/chart--plus.png' alt='News'>";
-            echo $rows;
-            echo "<span>die neuesten Umfragen</span>";
+        echo "<a href='#'>";
+        echo "<img src='" . INFUSIONS . "siteinfo_panel/images/chart--plus.png' alt='News'>";
+        echo $rows;
+        echo "<span>die neuesten Umfragen</span>";
         echo "</a>";
         echo "</div>";
     }
@@ -115,10 +118,10 @@ if ($userdata['user_lastvisit']) {
     $rows = dbrows($resultshout);
     if ($rows > 0) {
         echo "<div class='brick'>";
-        echo "<a href='#' class='infotip'>";
-            echo "<img src='" . INFUSIONS . "siteinfo_panel/images/sticky-note--plus.png' alt='News'>";
-            echo $rows;
-            echo "<span>die neuesten Shoutbox Posts</span>";
+        echo "<a href='#'>";
+        echo "<img src='" . INFUSIONS . "siteinfo_panel/images/sticky-note--plus.png' alt='News'>";
+        echo $rows;
+        echo "<span>die neuesten Shoutbox Posts</span>";
         echo "</a>";
         echo "</div>";
     }
@@ -128,10 +131,10 @@ if ($userdata['user_lastvisit']) {
     $rows = dbrows($resultuser);
     if ($rows > 0) {
         echo "<div class='brick'>";
-        echo "<a href='#' class='infotip'>";
-            echo "<img src='" . INFUSIONS . "siteinfo_panel/images/user--plus.png' alt='News'>";
-            echo $rows;
-            echo "<span>die neuesten Mitlieder</span>";
+        echo "<a href='#'>";
+        echo "<img src='" . INFUSIONS . "siteinfo_panel/images/user--plus.png' alt='News'>";
+        echo $rows;
+        echo "<span>die neuesten Mitlieder</span>";
         echo "</a>";
         echo "</div>";
     }
@@ -141,10 +144,10 @@ if ($userdata['user_lastvisit']) {
     $rows = dbrows($resultdownload);
     if ($rows > 0) {
         echo "<div class='brick'>";
-        echo "<a href='#' class='infotip'>";
-            echo "<img src='" . INFUSIONS . "siteinfo_panel/images/box--plus.png' alt='News'>";
-            echo $rows;
-            echo "<span>die neuesten Downloads</span>";
+        echo "<a href='#'>";
+        echo "<img src='" . INFUSIONS . "siteinfo_panel/images/box--plus.png' alt='News'>";
+        echo $rows;
+        echo "<span>die neuesten Downloads</span>";
         echo "</a>";
         echo "</div>";
     }
@@ -154,38 +157,39 @@ if ($userdata['user_lastvisit']) {
     $rows = dbrows($result);
     if ($rows > 0) {
         echo "<div class='brick'>";
-        echo "<a href='#' class='infotip'>";
-            echo "<img src='" . INFUSIONS . "siteinfo_panel/images/folder--plus.png' alt='News'>";
-            echo $rows;
-            echo "<span>die neuesten Forumposts</span>";
+        echo "<a href='#'>";
+        echo "<img src='" . INFUSIONS . "siteinfo_panel/images/folder--plus.png' alt='News'>";
+        echo $rows;
+        echo "<span>die neuesten Forumposts</span>";
         echo "</a>";
         echo "</div>";
     }
-    
+
     $result = dbquery("SELECT weblink_id FROM " . DB_WEBLINKS . " ORDER BY weblink_datestamp");
     $rows = dbrows($result);
     if ($rows > 0) {
         echo "<div class='brick'>";
-        echo "<a href='#' class='infotip'>";
-            echo "<img src='" . INFUSIONS . "siteinfo_panel/images/globe--plus.png' alt='News'>";
-            echo $rows;
-            echo "<span>die neuesten Weblinks</span>";
+        echo "<a href='#'>";
+        echo "<img src='" . INFUSIONS . "siteinfo_panel/images/globe--plus.png' alt='News'>";
+        echo $rows;
+        echo "<span>die neuesten Weblinks</span>";
         echo "</a>";
         echo "</div>";
     }
-    
-    $result = dbquery("SELECT message_id FROM " . DB_MESSAGES . " WHERE message_to = ".$userdata['user_id']." ORDER BY message_datestamp");
+
+    $result = dbquery("SELECT message_id FROM " . DB_MESSAGES . " WHERE message_to = " . $userdata['user_id'] . " ORDER BY message_datestamp");
     $rows = dbrows($result);
     if ($rows > 0) {
         echo "<div class='brick'>";
-        echo "<a href='#' class='infotip'>";
-            echo "<img src='" . INFUSIONS . "siteinfo_panel/images/inbox--plus.png' alt='News'>";            
-            echo $rows;
-            echo "<span>die neuesten Nachrichten</span>";        
+        echo "<a href='#'>";
+        echo "<img src='" . INFUSIONS . "siteinfo_panel/images/inbox--plus.png' alt='News'>";
+        echo $rows;
+        echo "<span>die neuesten Nachrichten</span>";
         echo "</a>";
         echo "</div>";
     }
+    echo "<div id='infofade'></div>";
     echo "</div>";
-    closetable();   
+    closetable();
 }
 ?>

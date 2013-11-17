@@ -26,27 +26,22 @@ include INFUSIONS . "siteinfo_panel/include/locale.php";
 add_to_head("<link rel='stylesheet' href='" . INFUSIONS . "siteinfo_panel/css/sipstyles.css' type='text/css' media='Screen' />");
 add_to_head("<script>
     $( document ).ready(function() {
-        $('#infofade').hide();
-        var timer;
+        $('#infofade').hide();        
         var text;
         $('.brick').on({            
             mouseenter: function () {                
-                text = $(this).find( 'span' ).text();
-                timer = setTimeout(function () {
-                    $('#infofade').text(text).slideDown();
-                }, 100);
+                text = $(this).find( 'span' ).text();                
+                $('#infofade').text(text).show();                
             },
-            mouseleave : function () {
-                timer = setTimeout(function () {                     
-                    $('#infofade').text(text).slideUp();                    
-                }, 1500);
+            mouseleave : function () {                                   
+                $('#infofade').text(text).hide();
             }
         });
     });
     </script>");
 
 if ($userdata['user_lastvisit']) {
-    opentable($locale['sip001']);
+    opentable($locale['sip001']."<span id='infofade'></span>");
     echo "<div>";
     //$resultnews = dbquery("SELECT news_id,news_news,news_subject FROM " . DB_NEWS . " WHERE news_datestamp > " . $userdata['user_lastvisit'] . " AND news_visibility = 0 ORDER BY news_datestamp");
     $resultnews = dbquery("SELECT news_id FROM " . DB_NEWS . " WHERE news_visibility = 0 ORDER BY news_datestamp");
@@ -187,8 +182,7 @@ if ($userdata['user_lastvisit']) {
         echo "<span>die neuesten Nachrichten</span>";
         echo "</a>";
         echo "</div>";
-    }
-    echo "<div id='infofade'></div>";
+    }    
     echo "</div>";
     closetable();
 }

@@ -9,7 +9,10 @@
 .brick a span {
     display:none;
 }
-
+#infofade{
+    margin-left: 50px;
+    font-size: 80%;
+}
 a.infotip {outline:none; }
 a.infotip strong {line-height:30px;}
 a.infotip:hover {text-decoration:none;} 

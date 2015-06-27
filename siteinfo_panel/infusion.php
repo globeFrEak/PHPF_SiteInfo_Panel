@@ -20,7 +20,11 @@
 if (!defined("IN_FUSION")) {
     die("Access Denied");
 }
-include INFUSIONS . "siteinfo_panel/include/locale.php";
+if (file_exists(INFUSIONS . "siteinfo_panel/locale/" . $settings['locale'] . ".php")) {
+    include INFUSIONS . "siteinfo_panel/locale/" . $settings['locale'] . ".php";
+} else {
+    include INFUSIONS . "siteinfo_panel/locale/English.php";
+}
 
 // Infusion general information
 $inf_title = $locale['siptit'];
